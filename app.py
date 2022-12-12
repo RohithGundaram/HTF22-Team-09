@@ -7,9 +7,11 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return render_template("home.html" )
+
 @app.route("/About")
 def about():
     return render_template("aboutus.html")
+	
 @app.route("/login",methods=['GET','POST'])
 def login():
 	error = None
@@ -51,7 +53,7 @@ def addroom():
 		row = request.form['row']
 		col = request.form['col']
 		seat = request.form['seat']
-		room_numbers[room_no]=0;
+		room_numbers[room_no]=0
 		myconn = sqlite3.connect("room_details.db")
 		if (int(seat) <= int(row) * int(col)):
 			with myconn:
@@ -125,7 +127,7 @@ def generate():
 		el_end   = int(el_end) 
 		r_missing = r_missing.split()
 		for  i in range(len(r_missing)):
-			r_missing[i] = int(r_missing[i])
+			r_missing[i] = int(r_missing[i])  # type: ignore
 		it_list = list(range(it_start,it_end+1))
 		it_list = missing(r_missing,it_list)
 		ec_list = list(range(ec_start,ec_end+1))
